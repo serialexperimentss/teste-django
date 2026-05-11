@@ -1,0 +1,27 @@
+<!-- templates/galeria/index.html -->
+{% load static %}
+{% extends 'galeria/base.html' %}
+{% load static %}
+
+{% block content %}
+  <main>
+    <h1>Galeria de Imagens</h1>
+    <!-- templates/galeria/index.html -->
+{% if cards %}
+  {% for fotografia in cards %}
+    <li class="card">
+      <a href="{% url 'imagem' fotografia.id %}">
+        <img 
+          src="{% static 'assets/imagens/galeria/' %}{{fotografia.foto}}" 
+          alt="{{fotografia.nome}}"
+        >
+      </a>
+      <p class="card__titulo">{{fotografia.nome}}</p>
+      <p class="card__descricao">{{fotografia.legenda}}</p>
+    </li>
+  {% endfor %}
+{% else %}
+  <p>Nenhuma fotografia encontrada.</p>
+{% endif %}
+  </main>
+{% endblock %}
